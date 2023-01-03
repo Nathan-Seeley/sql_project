@@ -4,11 +4,10 @@
 
 -- SELECT * FROM final_airbnb;
 
-
-
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 1 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find out how many rows are in the table "final_airbnb"
 -- EXPECTED OUTPUT: 146
+
 
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 2 >>>>>>>>>>>>>>>>>>>>>>>
