@@ -36,8 +36,9 @@
 
 -- EXPECTED OUTPUT: Highest = 785, Lowest = 55
 
--- SELECT MAX(price) AS Highest,MIN(price) AS Lowest FROM final_airbnb;
-
+-- SELECT MAX(price) AS Highest, MIN(price) AS Lowest FROM final_airbnb;
+-- SELECT *, price AS Highest FROM final_airbnb ORDER BY price DESC LIMIT 1;
+-- SELECT *, price AS Lowest FROM final_airbnb ORDER BY price ASC LIMIT 1;
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 5 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the average availability for all listings in the data set (using the availability_365 column)
 -- HINT: Aggregates are more than just big rocks...
@@ -52,7 +53,7 @@
 
 -- EXPECTED OUTPUT: 6 rows
 
--- SELECT COUNT(number_of_reviews) FROM final_airbnb WHERE number_of_reviews = 0; 
+-- SELECT COUNT(number_of_reviews) FROM final_airbnb WHERE number_of_reviews IS NOT NULL AND number_of_reviews = 0; 
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 7 >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the id of the listing with a room_type of "Private room" that has the most reviews 
@@ -71,6 +72,8 @@
 -- INVESTIGATE: Should Williamsburg be crowned the most popular neighbourhood?
 
 -- SELECT neighbourhood, COUNT(neighbourhood) AS Most_popular FROM final_airbnb GROUP BY neighbourhood ORDER BY Most_popular DESC LIMIT 1;
+
+-- Williamsburg should not be crowned the most popular neighbourhood because it is tied with Harlem.
 
 -- <<<<<<<<<<<<<<<<<<<<<< PROBLEM 9 >>>>>>>>>>>>>>>>>>>>>>>
 -- Query the data to discover which listing is the most popular using the reviews_per_month for all listings with a minimum_nights value of less than 7
@@ -94,8 +97,13 @@
 -- <<<<<<<<<<<<<<<<<<<<<<< WRAP UP >>>>>>>>>>>>>>>>>>>>>>>>>
 -- What do you think makes a successful AirBnB rental in this market? What factors seem to be at play the most?
 -- Write a few sentences and include them with your project submission in the README file 
-
+-- Select neighbourhood_group, count(number_of_reviews_ltm) review_number FROM final_airbnb GROUP BY neighbourhood_group ORDER BY review_number DESC;
 -- <<<<<<<<<<<<<<<<<<<<< ** BONUS ** >>>>>>>>>>>>>>>>>>>>>>>
 -- Find the the percent above or below each listing is compared to the average price for all listings.
 -- HINT: No hints! It's a bonus for a reason :)
+-- SELECT ROUND(AVG(price)) FROM final_airbnb;
+-- SELECT COUNT(id) AS num_above_ave_price FROM final_airbnb WHERE price > 165;
+-- SELECT COUNT(id) AS num_below_ave_price FROM final_airbnb WHERE price < 165;
+
+-- SELECT ROUND(AVG(price)) AS average_price, CONCAT(ROUND((51/COUNT(id))*100), '%') AS percent_above_average_price, CONCAT(ROUND((94/COUNT(id))*100), '%') AS percent_below_average_price  FROM final_airbnb;
 
